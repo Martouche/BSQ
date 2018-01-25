@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2018
+** algo BSQ
+** File description:
+** mon bsq
+*/
+
 #include "bsq.h"
 
 int	check_o(t_bsq bsq)

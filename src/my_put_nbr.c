@@ -1,12 +1,10 @@
 /*
-** my_put_nbr.c for my_put_nbr in /home/wery_a/rendu/BSQ/Test/v3
-** 
-** Made by adrien wery
-** Login   <wery_a@epitech.net>
-** 
-** Started on  Fri Jan 16 15:51:11 2015 adrien wery
-** Last update Fri Jan 16 18:04:14 2015 adrien wery
+** EPITECH PROJECT, 2018
+** my_put_nbr
+** File description:
+** my_put_nbr.c
 */
+
 
 #include "bsq.h"
 

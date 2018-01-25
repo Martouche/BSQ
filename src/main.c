@@ -1,12 +1,10 @@
 /*
-** main.c for main in /home/wery_a/rendu/BSQ/Test
-** 
-** Made by adrien wery
-** Login   <wery_a@epitech.net>
-** 
-** Started on  Mon Jan 12 15:22:24 2015 adrien wery
-** Last update Sun Jan 18 23:21:32 2015 adrien wery
+** EPITECH PROJECT, 2018
+** main.c
+** File description:
+** my_main
 */
+
 
 #include "bsq.h"
 

@@ -1,12 +1,10 @@
 /*
-** str.c for str in /home/wery_a/rendu/BSQ/Test
-** 
-** Made by adrien wery
-** Login   <wery_a@epitech.net>
-** 
-** Started on  Mon Jan 12 15:50:30 2015 adrien wery
-** Last update Thu Jan 15 20:02:50 2015 adrien wery
+** EPITECH PROJECT, 2018
+** my_str
+** File description:
+** str.c with malloc and memset
 */
+
 
 #include "bsq.h"
 

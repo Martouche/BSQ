@@ -1,12 +1,10 @@
 /*
-** get_file.c for get_file in /home/wery_a/rendu/BSQ/Test/v3
-** 
-** Made by adrien wery
-** Login   <wery_a@epitech.net>
-** 
-** Started on  Thu Jan 15 16:44:20 2015 adrien wery
-** Last update Fri Jan 16 18:51:08 2015 adrien wery
+** EPITECH PROJECT, 2018
+** my_get_file
+** File description:
+** get_file
 */
+
 
 #include "bsq.h"
 
