@@ -1,85 +1,118 @@
 /*
 ** EPITECH PROJECT, 2018
-** algo BSQ
+** mon algo bsq
 ** File description:
-** mon bsq
+** bsq
 */
 
-#include "bsq.h"
 
-int	check_o(t_bsq bsq)
+#include <unistd.h>
+#include <stdlib.h>
+#include "my.h"
+
+char		*resolve(char *buffer, int *map, int width, int coord)
 {
-	int	x = bsq.x1;
-	int	y = bsq.y1;
+	int		tmp;
+	int		lines;
 
-	if (bsq.s[y * bsq.len_y + x] == 'o')
-		return (x);
-	while (y <= bsq.y2)
+	lines = 0;
+	while (lines != map[coord])
 	{
-		if (bsq.s[y * bsq.len_y + bsq.x2] == 'o')
-			return (bsq.x2);
-		y += 1;
+		tmp = coord - (map[coord] - 1);
+		while (tmp <= coord)
+		{
+			buffer[tmp - (lines * width)] = 'x';
+			tmp = tmp + 1;
+		}
+		lines++;
 	}
-	while (x < bsq.x2)
-	{
-		if (bsq.s[bsq.y2 * bsq.len_y + x] == 'o')
-			return (x);
-		x += 1;
-	}
-	return (-1);
+	return (buffer);
 }
 
-int	make_bsq_2(t_bsq *bsq)
+char		*bomberman(char *buffer, int *map, int width)
 {
-	int	xo = -1;
-	int	i = 0;
+	int		i;
+	int		coord;
 
-	bsq->x2 = bsq->x1 + 1;
-	bsq->y2 = bsq->y1 + 1;
-	while (bsq->x2 < bsq->len_x && bsq->y2 < bsq->len_y &&
-	       (xo = check_o(*bsq)) == -1)
+	i = 0;
+	coord = 0;
+	while (buffer[i] != '\n')
+		i = i + 1;
+	while (buffer[i] != '\0')
 	{
-		bsq->x2 += 1;
-		bsq->y2 += 1;
-		i += 1;
+		if (buffer[i] == '\n' && buffer[i + 1] != '\0')
+			i = i + 2;
+		if (buffer[i] == 'o')
+			i = i + 1;
+		else
+		{
+			map[i] = fill(map[i - 1], map[i - width], map[i - (width + 1)]);
+			if (map[coord] < map[i])
+				coord = i;
+			i = i + 1;
+		}
 	}
-	if (bsq->x2 - bsq->x1 > bsq->size)
-	{
-		bsq->size = bsq->x2 - bsq->x1;
-		bsq->x = bsq->x1;
-		bsq->y = bsq->y1;
-	}
-	if (xo <= 0)
-		bsq->x1 += 1;
-	else
-		bsq->x1 = xo + 1;
-	return (i);
+	buffer = resolve(buffer, map, width, coord);
+	return (buffer);
 }
 
-int     make_bsq(t_bsq bsq)
+char		*bsq(char *buffer, int *map, int width)
 {
-	int   i;
+	int		i;
 
-	bsq.y1 = 0;
-	while (bsq.y1 + bsq.size < bsq.len_y)
+	i = 0;
+	while (buffer[i] != '\n')
 	{
-		bsq.x1 = 0;
-		while (bsq.x1 + bsq.size < bsq.len_x)
-			i += make_bsq_2(&bsq);
-		bsq.y1 += 1;
+		map[i] = (buffer[i] == '.') ? 1 : 0;
+		i = i + 1;
 	}
-	display_bsq(bsq);
-	my_str("\e[01;39m", 1);
-	my_str("\nSTEP = ", 1);
-	my_put_nbr(i);
-	my_str("\nPos = [", 1);
-	my_put_nbr(bsq.y);
-	my_str("][", 1);
-	my_put_nbr(bsq.x);
-	my_str("] ", 1);
-	my_str("\nSize = ", 1);
-	my_put_nbr(bsq.size);
-	my_putchar('\n');
-	free(bsq.s);
+	while (buffer[i] != '\0')
+	{
+		if (buffer[i - 1] == '\n')
+			map[i] = (buffer[i] == '.') ? 1 : 0;
+		else if (buffer[i] == '\n')
+			map[i] = -1;
+		else
+			map[i] = 0;
+		i = i + 1;
+	}
+	map[i] = END;
+	buffer = bomberman(buffer, map, width);
+	return (buffer);
+}
+
+int		information(char *buffer, int size)
+{
+	int		lines;
+	int		i;
+	int		times;
+	int		*map;
+
+	i = 0;
+	times = 0;
+	lines = my_getnbr(buffer);
+	while (buffer[i] != '\n')
+	{
+		buffer = buffer + 1;
+		times = times + 1;
+	}
+	buffer = buffer + 1;
+	while (buffer[i] != '\n')
+		i = i + 1;
+	i = i + 1;
+	if ((map = malloc(sizeof(int) * (i * lines + 1))) == NULL)
+		return (84);
+	buffer = (lines == 1 || i == 2) ? special_case(buffer) : bsq(buffer, map, i);
+	display(&buffer, &map, size, times);
 	return (0);
+}
+
+int		main(int argc, char **argv)
+{
+	char		*buffer;
+
+	if (argc != 2)
+		return (84);
+	buffer = NULL;
+	return (read_file(buffer, argv));
 }

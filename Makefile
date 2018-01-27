@@ -6,10 +6,8 @@
 ##
 
 
-SRC=		src/main.c\
-		src/get_file.c\
-		src/str.c\
-		src/my_put_nbr.c\
+SRC=		src/bsq2.c\
+		src/my_getnbr.c\
 		src/bsq.c
 
 OBJ=		$(SRC:.c=.o)
