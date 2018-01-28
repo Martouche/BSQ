@@ -43,11 +43,11 @@ int	check_bsq(char *buffer)
 		if (buffer[i] == '\n')
 			lines++;
 		else if (buffer[i] != '.' && buffer[i] != 'o' && buffer[i] != '\n')
-			exit(84);
+			return (84);
 		i = i + 1;
 	}
 	if (lines != nb)
-		exit(84);
+		return (84);
 	return (0);
 }
 
