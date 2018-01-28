@@ -20,4 +20,4 @@ int	check_bsq(char *);
 char	*bsq(char *, int *, int);
 char	*resolve(char *, int *, int , int);
 
-#endif /* !MY_H_ */
+#endif
