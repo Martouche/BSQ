@@ -6,9 +6,11 @@
 ##
 
 
-SRC=		src/bsq2.c\
+SRC=		src/read_and_fill.c\
 		src/my_getnbr.c\
-		src/bsq.c
+		src/bsq.c\
+		src/check_cases.c\
+		src/my_inform.c
 
 OBJ=		$(SRC:.c=.o)
 
