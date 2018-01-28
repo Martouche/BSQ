@@ -15,5 +15,9 @@ int	information(char*, int);
 char	*special_case(char*);
 int	fill(int, int, int);
 void	display(char**, int**, int, int);
+char	*bomberman(char *, int *, int);
+int	check_bsq(char *);
+char	*bsq(char *, int *, int);
+char	*resolve(char *, int *, int , int);
 
 #endif /* !MY_H_ */

@@ -12,11 +12,10 @@
 #include <stdlib.h>
 #include "my.h"
 
-char		*special_case(char *buffer)
+char	*special_case(char *buffer)
 {
-	int		i;
+	int i = 0;
 
-	i = 0;
 	while (buffer[i] != '\0')
 	{
 		if (buffer[i] == '.')
@@ -30,15 +29,12 @@ char		*special_case(char *buffer)
 	return (buffer);
 }
 
-int		check_bsq(char *buffer)
+int	check_bsq(char *buffer)
 {
-	int		i;
-	int		nb;
-	int		lines;
+	int i = 0;
+	int nb = my_getnbr(buffer);
+	int lines = 0;
 
-	i = 0;
-	lines = 0;
-	nb = my_getnbr(buffer);
 	while (buffer[i] != '\n')
 		buffer = buffer + 1;
 	buffer = buffer + 1;
@@ -54,3 +50,4 @@ int		check_bsq(char *buffer)
 		exit(84);
 	return (0);
 }
+

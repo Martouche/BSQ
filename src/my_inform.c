@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "my.h"
 
-int		information(char *buffer, int size)
+int	information(char *buffer, int size)
 {
 	int lines = my_getnbr(buffer);
 	int i = 0;
@@ -32,7 +32,7 @@ int		information(char *buffer, int size)
 	display(&buffer, &map, size, times);
 	return (0);
 }
-char *bomberman(char *buffer, int *map, int width)
+char	*bomberman(char *buffer, int *map, int width)
 {
 	int i = 0;
 	int coord = 0;
